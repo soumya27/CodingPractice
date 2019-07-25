@@ -1,0 +1,53 @@
+//Link:https://www.hackerrank.com/challenges/two-strings/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=dictionaries-hashmaps
+
+package InterviewPrep_HackerRank.Hash_Dict;
+
+import java.io.*;
+import java.util.*;
+
+public class twoString {
+
+//    Method 1
+    static String twoStrings(String s1, String s2) {
+        HashMap<String, Integer> s1HashMap = new HashMap<String,Integer>();
+        String[] s1Alphabets = s1.split("");
+        for(String alphabet : s1Alphabets){
+            if(s1HashMap.get(alphabet)== null)
+                s1HashMap.put(alphabet,1);
+            else
+                s1HashMap.put(alphabet, s1HashMap.get(alphabet)+1);
+        }
+        String[] s2Alphabets = s2.split("");
+        for(String alphabet: s2Alphabets){
+            if(s1HashMap.containsKey(alphabet))
+                return "YES";
+        }
+
+        return "NO";
+    }
+
+    private static final Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int q = scanner.nextInt();
+        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+        for (int qItr = 0; qItr < q; qItr++) {
+            String s1 = scanner.nextLine();
+
+            String s2 = scanner.nextLine();
+
+            String result = twoStrings(s1, s2);
+
+            bufferedWriter.write(result);
+            bufferedWriter.newLine();
+        }
+
+        bufferedWriter.close();
+
+        scanner.close();
+    }
+
+}
