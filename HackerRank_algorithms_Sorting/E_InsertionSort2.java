@@ -24,7 +24,7 @@ public class E_InsertionSort2 {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[]{1,5,4,6,3,10,2};
+        int[] arr = new int[] {-20,-3916237, -357920, -3620601 ,7374819, -7330761, 30, 6246457, -6461594, 266854, -520, -470 };
         insertionSort2(arr.length,arr);
     }
 }
