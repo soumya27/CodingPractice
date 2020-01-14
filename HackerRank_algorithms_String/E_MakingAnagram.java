@@ -1,7 +1,6 @@
 //Link:https://www.hackerrank.com/challenges/making-anagrams/problem
 package HackerRank_algorithms_String;
 
-import java.util.Collections;
 import java.util.HashMap;
 
 public class E_MakingAnagram {
@@ -12,17 +11,19 @@ public class E_MakingAnagram {
         HashMap<Character,Integer> input2 = new HashMap<>();
         buildMap(s1,input1);
         buildMap(s2,input2);
-        System.out.println(Collections.singletonList(input1));
-        System.out.println(Collections.singletonList(input2));
         int count=0 ;
         for( Character key : input1.keySet()){
-            if(input2.get(key) !=-1){
+            if(input2.get(key) != null){
                 count += Math.abs(input1.get(key)-input2.get(key));
+                input2.remove(key);
             }else{
-                
+                count+=input1.get(key);
             }
         }
-        return 0;
+        for(Character key : input2.keySet()){
+            count += input2.get(key);
+        }
+        return count;
     }
 
     private static void buildMap(String input,HashMap<Character,Integer>map){
