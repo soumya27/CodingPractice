@@ -1,53 +1,57 @@
 //Link:https://www.hackerrank.com/challenges/climbing-the-leaderboard/problem
 package HackerRank_algorithms_implementation;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class M_ClimbingLeaderboard {
 
     static int[] climbingLeaderboard(int[] scores, int[] alice) {
         int[] result = new int[alice.length];
-
-//        for( int n : alice) {
-//            System.out.println(binarySearch(scores, 0, scores.length, n));
-//        }
-
-        List<Integer> scoreLists = new ArrayList<>();
-        for (int score : scores){
-            if(!scoreLists.contains(score)){
-                scoreLists.add(score);
-            }
-        }
+        int n  =  scores.length;
+        n = removeDuplicates(scores,n);
         for (int i = alice.length-1; i>= 0 ; i--){
-            if( alice[i] >= scoreLists.get(0))
+            if( alice[i] >= scores[0])
                 result[i]= 1;
-            else if ( alice[i]< scoreLists.get(scoreLists.size()-1))
-                result[i] = scoreLists.size()+1;
+            else if ( alice[i]< scores[n-1])
+                result[i] = n+1;
             else
-                result[i] = binarySearch(scoreLists,0,scoreLists.size()-1, alice[i]) +1;
+                result[i] = binarySearch(scores,0,n-1, alice[i]) +1;
         }
         return result;
     }
 
-    static int binarySearch(List<Integer> arr, int l, int h, int key)
+    private static int removeDuplicates(int[] arr, int n)
+    {
+        if (n == 0 || n == 1)
+            return n;
+
+        int j = 0;
+
+        for (int i = 0; i < n-1; i++)
+            if (arr[i] != arr[i+1])
+                arr[j++] = arr[i];
+
+        arr[j++] = arr[n-1];
+
+        return j;
+    }
+
+    static int binarySearch(int[] arr, int l, int h, int key)
     {
         if (h >= l) {
             int mid = (l + h )/ 2;
-            if( arr.get(mid)==key){
+            if( arr[mid]==key){
                 return mid;
             }
             if(l == mid || h == mid){
-                if(key <  arr.get(mid)  && key >  arr.get(h))
+                if(key <  arr[mid]  && key >  arr[h])
                     return  mid+1;
-                else if (key <  arr.get(mid)  && key <  arr.get(h))
+                else if (key < arr[mid]  && key <  arr[h])
                     return h +1;
-                else if (key >  arr.get(mid) && key >  arr.get(l))
+                else if (key >  arr[mid]&& key > arr[l])
                     return l;
                 else
                     return mid+1;
             }
-            if ( arr.get(mid) < key )
+            if ( arr[mid] < key )
                 return binarySearch(arr, l, mid - 1, key);
 
             return binarySearch(arr, mid + 1, h, key);
@@ -56,7 +60,7 @@ public class M_ClimbingLeaderboard {
     }
 
     public static void main(String[] args) {
-        int[] scores = new int[]{100,50,40,20,10};
+        int[] scores = new int[]{100,100,50,40,20,20,10};
         int[] alice = new int[]{5,25,50,120};
 
         int[] result = climbingLeaderboard(scores,alice);
