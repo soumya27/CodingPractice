@@ -8,17 +8,15 @@ public class M_sparseArray {
 
     static int[] matchingStrings(String[] strings, String[] queries) {
         int[] result = new int[queries.length];
-         // create dict of strings
         Map<String ,Integer> stringsMap = new HashMap<>();
-        for (String value : strings){
-            // no key then
-            stringsMap.merge(value, 1, Integer::sum);
+        // Instead of this step - we can create map while taking the input
+        for (String value : strings){ // O(n)
+            stringsMap.merge(value, 1, Integer::sum); // O(n)
         }
         int i=0;
-        for (String value : queries){
-            result[i++] = stringsMap.get(value) == null ? 0 :  stringsMap.get(value);
+        for (String value : queries){ // O(n)
+            result[i++] = stringsMap.get(value) == null ? 0 :  stringsMap.get(value);  // O(1)
         }
-        // look up query in dict
         return result;
     }
 
