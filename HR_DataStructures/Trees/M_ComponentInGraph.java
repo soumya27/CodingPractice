@@ -1,5 +1,8 @@
 package HR_DataStructures.Trees;
 
+import java.util.Arrays;
+import java.util.Map;
+
 public class M_ComponentInGraph {
 
     private static int[] parent;   // parent[i] = parent of i
@@ -8,11 +11,18 @@ public class M_ComponentInGraph {
 
     static int[] componentsInGraph(int[][] gb) {
 
-        for( int i = 0 ; i < gb.length; i ++){
-            int p = gb[i][0];
-            int q =gb[i][1];
-            if (!connected(p,q)){
-                union(p,q);
+        for (int[] ints : gb) {
+            int p = ints[0];
+            int q = ints[1];
+            if (!connected(p, q)) {
+                union(p, q);
+            }
+        }
+
+        for (int value : height) {
+            if (value != 0 && value != 1) {
+                max = Math.max(value, max);
+                min = Math.min(value, min);
             }
         }
        return new int[] {min, max};
@@ -35,25 +45,23 @@ public class M_ComponentInGraph {
         int j = find(q);
         if (i == j)
             return;
-        // TODO make shorter root point to taller one
         if (height[i] < height[j]) {
             parent[i] = j;
             height[j] += height[i];
-            max = Math.max(height[j], max);
-            min = Math.min (height[j],min);
+            height[i]=0;
         } else {
             parent[j] = i;
             height[i] += height[j];
-            max = Math.max(height[i], max);
-            min = Math.min (height[i],min);
+            height[j]=0;
         }
     }
 
     public static void main(String[] args) {
         int[][] gb = new int[][]{
-                {1,6},{2,7},{3,8},{4,9},{2,6}
+                {1,17},{5,13},{7,12},{5,17},{5,12},
+                {2,17},{1,18},{8,13},{2,15},{5,20}
         };
-        int n = 5;
+        int n = 10;
         parent = new int[2*n+1];
         height = new int[2*n+1];
         for (int i = 1; i <= 2*n; i++) {
@@ -63,5 +71,6 @@ public class M_ComponentInGraph {
         for (int value : componentsInGraph(gb)){
             System.out.print(value + " ");
         }
+
     }
 }
