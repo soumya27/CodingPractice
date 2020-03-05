@@ -1,8 +1,6 @@
 //Link: https://www.hackerrank.com/challenges/runningtime/problem?h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen&h_r=next-challenge&h_v=zen
 package HackerRank_algorithms_Sorting;
 
-import java.util.Arrays;
-
 public class E_RuntimeInsertionSort {
 
     static int runningTime(int[] arr) {

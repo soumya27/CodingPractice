@@ -1,15 +1,12 @@
 package HR_DataStructures.Trees;
 
-import java.util.Arrays;
-import java.util.Map;
-
 public class M_ComponentInGraph {
 
     private static int[] parent;   // parent[i] = parent of i
     private static int[] height;   // height[i] = height of subtree rooted at i
     private static int min = Integer.MAX_VALUE, max = Integer.MIN_VALUE;
 
-    static int[] componentsInGraph(int[][] gb) {
+    private static int[] componentsInGraph(int[][] gb) {
 
         for (int[] ints : gb) {
             int p = ints[0];
@@ -28,11 +25,11 @@ public class M_ComponentInGraph {
        return new int[] {min, max};
     }
 
-    static boolean connected(int p ,int q){
+    private static boolean connected(int p, int q){
         return find(p) == find(q);
     }
 
-    static int find (int p){
+    private static int find(int p){
         int root = p ;
         while (root != parent[root]){
             root = parent[root];
@@ -40,7 +37,7 @@ public class M_ComponentInGraph {
         return root;
     }
 
-    static void union(int p , int q ){
+    private static void union(int p, int q){
         int i = find(p);
         int j = find(q);
         if (i == j)
