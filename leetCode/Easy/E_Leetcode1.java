@@ -2,7 +2,7 @@ package leetCode.Easy;
 //link:https://leetcode.com/problems/two-sum/
 import java.util.HashMap;
 
-public class TwoSum {
+public class E_Leetcode1 {
     public static int[] twoSum(int[] nums, int target) {
 //        Method 1
 //        int[] result = new int[2];
