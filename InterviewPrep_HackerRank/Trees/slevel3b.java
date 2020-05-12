@@ -1,11 +1,15 @@
 package InterviewPrep_HackerRank.Trees;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
+import java.util.HashSet;
 
 public class slevel3b {
 
     public static int solution(int[][] map) {
         return breadthFirstSearch (map);
+//        String value = "0101010";
     }
 
     public static int breadthFirstSearch(int[][] map) {

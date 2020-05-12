@@ -1,4 +1,4 @@
-package InterviewPrep_HackerRank;
+package InterviewPrep_HackerRank.foobar;
 
 import java.util.Arrays;
 
